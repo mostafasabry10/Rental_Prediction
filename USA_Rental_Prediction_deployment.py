@@ -40,7 +40,7 @@ if page == "Dataset information":
     
     # Rental-related image 
     st.image('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80', 
-             caption='Housing and Rental Property Analytics', use_container_width=True)
+             caption='Housing and Rental Property Analytics', use_column_width=True)
     
     st.write("### Dataset Preview")
     st.dataframe(df)
@@ -75,7 +75,7 @@ elif page == "Data analysis":
         
         for col in df.columns :
             fig = px.histogram(df , x = col )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_column_width=True)
         
 
     with analysis_type[1]:
@@ -84,19 +84,19 @@ elif page == "Data analysis":
         df_trend = df.groupby('month')['price'].mean().reset_index()
         fig_1 = px.line(df_trend, x='month', y='price', title="Rental Price Trends Over Time")
         fig_1.update_xaxes(type='category')
-        st.plotly_chart(fig_1,use_container_width=True)
+        st.plotly_chart(fig_1,use_column_width=True)
 
 
         df_grouped = df.groupby('bedrooms')['price'].mean().sort_values(ascending = False).reset_index()
         fig_2 = px.bar(df_grouped, x="bedrooms", y="price", title="Mean Rental Price per Bedroom",text_auto='.2s') 
         fig_2.update_xaxes(type='category')
-        st.plotly_chart(fig_2,use_container_width=True)
+        st.plotly_chart(fig_2,use_column_width=True)
 
 
         state_expensive = df.groupby('state')['price'].mean().sort_values(ascending=False).head(10).reset_index()
         fig_top_state = px.bar(state_expensive, x='state', y='price',title="Top 10 Most Expensive States (Average Rent)",text_auto='.2s',color='price',color_continuous_scale='Reds')
         fig_top_state.update_layout(xaxis={'categoryorder':'total descending'})
-        st.plotly_chart(fig_top_state,use_container_width=True)
+        st.plotly_chart(fig_top_state,use_column_width=True)
 
 
 
