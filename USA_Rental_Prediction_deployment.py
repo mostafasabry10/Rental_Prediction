@@ -5,6 +5,7 @@ import plotly.express as px
 import streamlit as st 
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import RobustScaler
+from category_encoders import BinaryEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import cross_validate
 from sklearn.model_selection import RandomizedSearchCV
